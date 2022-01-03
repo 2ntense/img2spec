@@ -52,9 +52,10 @@ def write_to_wav(out_file, data, rate):
 
 
 def gen_wave(freq, amp, samp_step, samp_rate):
-    cycles = samp_step * freq / samp_rate
+    # amount of periods fitting in one samp_step
+    periods = (samp_step * freq) / samp_rate
     samples = numpy.arange(samp_step)
-    return amp * numpy.sin(float(cycles) * 2 * numpy.pi * samples / float(samp_step))
+    return amp * numpy.sin(periods * 2 * numpy.pi * samples / samp_step)
 
 
 def img2spec(img_path, out_path="img2spec.wav", freq_step=175, samp_step=1050, samp_rate=22050, duration=5.0):
