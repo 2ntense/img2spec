@@ -72,8 +72,6 @@ def img2spec(img_path, out_path="img2spec.wav", freq_step=175, samp_step=1050, s
         for y in range(img_data.shape[1] - 1, 0, -1):
             if img_data[x][y] < 255:
                 amp = 1 - img_data[x][y] / 255
-                # amp = 1.0
-                print(f"amp: {amp}")
                 signal += gen_wave(y * freq_step, amp, samp_step, samp_rate)
         out_signal = numpy.append(out_signal, signal)
 
